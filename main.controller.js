@@ -5,12 +5,11 @@ angular.module('AngularIssues', ['ngMaterial', 'yaru22.md'])
     .controller('MainController', ['$http',function($http) {
         var vm = this;
         vm.issues = [];
-        vm.currentPage = 1;
         vm.getAssignee = function(assignee){
             return assignee ? assignee.login : "No One";
         };
 
-        function activate(){
+        vm.getPage = function(page){
             var date = new Date();
             date.setDate(date.getDate() - 7);
             $http({
@@ -18,8 +17,8 @@ angular.module('AngularIssues', ['ngMaterial', 'yaru22.md'])
                 url: 'https://api.github.com/repos/angular/angular/issues',
                 params: {
                     'since': date, 
-                    'page':vm.currentPage,
-                    'per_page':10   
+                    'page' : page,
+                    'per_page' : 10   
                 }
                 }).then(function successCallback(res) {
                     vm.issues = res.data;
@@ -28,5 +27,15 @@ angular.module('AngularIssues', ['ngMaterial', 'yaru22.md'])
                     
                 });
         }
+        function activate(){
+            vm.getPage(1);
+        }
 
-        activate();}]);
+
+
+        function parseLinkHeader(linkHeader){
+            var fullLinks = linkHeader.split(",");
+                
+        }
+        activate();
+    }]);
