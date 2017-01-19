@@ -1,11 +1,14 @@
 angular.module('AngularIssues', ['ngMaterial', 'yaru22.md'])
     .config(function($mdThemingProvider) {
         $mdThemingProvider.theme('default')
-            .primaryPalette('blue')
-        .accentPalette('blue-grey')})
+            .primaryPalette('blue-grey')})
     .controller('MainController', ['$http',function($http) {
         var vm = this;
         vm.issues = [];
+        vm.currentPage = 1;
+        vm.getAssignee = function(assignee){
+            return assignee ? assignee.login : "No One";
+        };
 
         function activate(){
             var date = new Date();
@@ -14,10 +17,13 @@ angular.module('AngularIssues', ['ngMaterial', 'yaru22.md'])
                 method: 'GET',
                 url: 'https://api.github.com/repos/angular/angular/issues',
                 params: {
-                    'since': date    
+                    'since': date, 
+                    'page':vm.currentPage,
+                    'per_page':10   
                 }
                 }).then(function successCallback(res) {
-                    vm.issues = res.data;    
+                    vm.issues = res.data;
+                        
                 }, function errorCallback(re) {
                     
                 });
