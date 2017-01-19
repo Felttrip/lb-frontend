@@ -9,27 +9,55 @@
         </md-toolbar>
 
         <div flex layout="row">
-            <md-content flex id="content">
-            <ul>
-                <!--title, body, user login, and assignee login.-->
-                <li ng-repeat="issue in vm.issues">
-                    <p>title: {{issue.title}}</p>
-                    <p>body: {{issue.body}}</p>
-                    <p>user: {{issue.user.login}}</p>
-                    <p>assignee: {{issue.assignee.login}</p>
+            <md-content layout-padding flex id="content">
+                
+                <md-card ng-repeat="issue in vm.issues">
+                    <md-toolbar class="md-accent">
+                        <div class="md-toolbar-tools">
+                        <h2 class="md-flex">{{issue.title}}</h2>
+                        </div>
+                    </md-toolbar>
+                    <md-card-header>
+                        <md-card-avatar class="md-user-avatar">
+                            <img class="md-user-avatar" src="{{issue.user.avatar_url}}">
+                        </md-card-avatar>
+                        <md-card-header-text >
+                            <span class="md-title">Opened By:
+                                <md-button class="md-primary" ng-href="{{issue.user.html_url}}" target="_blank">
+                                    {{issue.user.login}}
+                                </md-button></span>
+                            <span class="md-subhead">
 
-                </li>
-            </ul>
+                                Assigned To:
+                                <md-button ng-if="issue.assignee" class="md-primary" ng-href="{{issue.assignee.html_url}}" target="_blank">
+                                    {{issue.assignee.login}}
+                                </md-button>
+                                <md-button ng-if="!issue.assignee" class="md-dissabled" target="_blank">
+                                    No One
+                                </md-button>
+                            </span>                            
+                        </md-card-header-text>
+                    </md-card-header>
+                    <md-card-content>
+                        <md ng-model="issue.body"></md>
+                    </md-card-content>
+                </md-card>
             </md-content>
         </div>
 
+        <script src="libs/marked.min.js"></script>
 
-
+        <!--Angular and Angular Material Libs-->
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
         <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-animate.min.js"></script>
         <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-aria.min.js"></script>
         <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-messages.min.js"></script>
         <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+        
+        <!--Markdown Parser-->
+        <script src="libs/angular-md.min.js"></script>
+
+        <!--Controller(s)-->
         <script src="main.controller.js"></script>
     </body>
 </html>
