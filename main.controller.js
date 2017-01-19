@@ -5,4 +5,17 @@ angular.module('AngularIssues', ['ngMaterial'])
     {"name":"fake","id":2},
     {"name":"fake","id":3},
     {"name":"fake","id":4}];
+
+    function activate(){
+        $http({
+            method: 'GET',
+            url: 'https://api.github.com/repos/angular/angular/issues'
+            }).then(function successCallback(res) {
+                vm.issues = res.data;    
+            }, function errorCallback(re) {
+                
+            });
+    }
+
+    activate();
   }]);

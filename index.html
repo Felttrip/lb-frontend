@@ -11,7 +11,14 @@
         <div flex layout="row">
             <md-content flex id="content">
             <ul>
-                <li ng-repeat="issue in vm.issues">id: {{issue.id}} name: {{issue.name}}</li>
+                <!--title, body, user login, and assignee login.-->
+                <li ng-repeat="issue in vm.issues">
+                    <p>title: {{issue.title}}</p>
+                    <p>body: {{issue.body}}</p>
+                    <p>user: {{issue.user.login}}</p>
+                    <p>assignee: {{issue.assignee.login}</p>
+
+                </li>
             </ul>
             </md-content>
         </div>
