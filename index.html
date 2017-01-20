@@ -7,15 +7,16 @@
     </head>
     <body ng-cloak layout="column"  ng-controller="MainController as vm">
         <md-toolbar layout="row" class="md-toolbar-tools">
-            <h1>Levels Beyond Angular Issues</h1>
+            <h1>Levels Beyond: Angular Issues</h1>
         </md-toolbar>
 
         <md-content layout="column"flex  id="content">
             <div layout="row">
                 <md-card flex-offset="15" flex="66" class="stretch-card">
                     <md-card-content>
-                        <div>
-                            <form name="userForm">
+                        <div layout="row">
+                            <md-button ng-disabled="!vm.prevLink" flex="15" ng-click="vm.getPage(vm.prevLink)" class="md-raised">Previous</md-button>
+                            <form flex="70" name="userForm">
                                 <div layout-gt-sm="row">        
                                     <md-input-container class="md-block" flex-gt-sm>
                                         <label>Search</label>
@@ -23,6 +24,7 @@
                                     </md-input-container>
                                 </div>
                             </form>
+                            <md-button ng-disabled="!vm.nextLink" flex="15" ng-click="vm.getPage(vm.nextLink)" class="md-raised">Next</md-button>
                         </div>
                         <md-list flex layout-padding>
                             <md-list-item class="md-3-line md-long-text" ng-repeat="issue in vm.issues | filter:searchText" >
@@ -43,9 +45,8 @@
 
         </md-content>
 
-        <script src="libs/marked.min.js"></script>
 
-        <!--Angular and Angular Material Libs-->
+        <!--Angular and Angular Material libs-->
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
         <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-animate.min.js"></script>
         <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-aria.min.js"></script>
@@ -53,9 +54,12 @@
         <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
         
         <!--Markdown Parser-->
+        <script src="libs/marked.min.js"></script>
         <script src="libs/angular-md.min.js"></script>
 
+        <!--App Configuration-->
+        <script src="app.js"></script>
         <!--Controller(s)-->
-        <script src="main.controller.js"></script>
+        <script src="controllers/main.controller.js"></script>
     </body>
 </html>
