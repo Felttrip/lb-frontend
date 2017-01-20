@@ -8,5 +8,6 @@ Each page can be additionally filtered down using the search bar.
 
 The title, author, author photo, assignee, body, and issue number is displayed with each issue.
 
-A demo of the app can be found [here](http://natethompson.me/lb-frontend/)
+A demo of the app can be found [here](http://natethompson.me/lb-frontend/).
+
 Additionally you can demo the application by cloning the repository and opening index.html in your favorite (modern) web browser.
