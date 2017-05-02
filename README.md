@@ -1,4 +1,4 @@
-#Levels Beyond Angular Issues Page
+# Levels Beyond Angular Issues Page
 
 This is a Single Page Application using AngularJS (and other libraries) that uses the 
 Github API to pull issues from the Angular Repository for the last 7 days. 
